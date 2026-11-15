@@ -1,0 +1,5 @@
+build/
+audio/cache/
+audio/loops/
+personal/
+.DS_Store
