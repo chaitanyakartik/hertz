@@ -121,7 +121,7 @@ struct PanelView: View {
             .buttonStyle(.plain)
             .accessibilityValue(m.launchAtLogin ? "on" : "off")
             Spacer()
-            Button("Quit Lull") { NSApp.terminate(nil) }
+            Button("Quit Hertz") { NSApp.terminate(nil) }
                 .buttonStyle(.plain)
                 .keyboardShortcut("q")
         }

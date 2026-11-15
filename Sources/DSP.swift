@@ -187,7 +187,7 @@ final class DSP {
     }
 }
 
-/// `Lull --selftest`: render each configuration offline, report levels and CPU cost.
+/// `Hertz --selftest`: render each configuration offline, report levels and CPU cost.
 enum SelfTest {
     static func run() {
         let sr = 48_000, secs = 12

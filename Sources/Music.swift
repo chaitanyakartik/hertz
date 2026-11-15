@@ -1,6 +1,6 @@
 import Foundation
 
-// Generative music for Lull: a small wavetable synth, a step sequencer that composes in a random key,
+// Generative music for Hertz: a small wavetable synth, a step sequencer that composes in a random key,
 // percussion for lo-fi, and an 8-line FDN reverb. Runs on the audio thread, allocation-free after init.
 
 struct Rand {

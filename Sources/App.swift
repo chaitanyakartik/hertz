@@ -14,7 +14,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, NSW
         // New status items land at the far left, behind the notch on a full menu bar. Seed a slot near
         // the system icons (points from the right edge; Sound ~208, Bluetooth ~246). ⌘-drag still moves it,
         // and macOS saves wherever it's dropped under the same key.
-        let slot = "NSStatusItem Preferred Position LullIcon"
+        let slot = "NSStatusItem Preferred Position LullIcon"   // key kept from the old name: keeps the icon where you put it
         if UserDefaults.standard.object(forKey: slot) == nil { UserDefaults.standard.set(230, forKey: slot) }
         item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         item.autosaveName = "LullIcon"
@@ -23,7 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, NSW
             b.target = self
             b.action = #selector(clicked)
             b.sendAction(on: [.leftMouseUp, .rightMouseUp])
-            b.toolTip = "Lull: click for controls, right-click to play/pause"
+            b.toolTip = "Hertz: click for controls, right-click to play/pause"
         }
         popover.behavior = .transient
         popover.animates = true
@@ -35,7 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, NSW
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self, let f = self.item.button?.window?.frame else { return }
-            NSLog("Lull: icon at x=%.0f..%.0f hidden=%d", f.minX, f.maxX, self.iconHidden ? 1 : 0)
+            NSLog("Hertz: icon at x=%.0f..%.0f hidden=%d", f.minX, f.maxX, self.iconHidden ? 1 : 0)
         }
 
         // First launch: if the menu bar is too full and the icon landed behind the notch, say hello anyway.
@@ -45,7 +45,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate, NSW
         }
     }
 
-    /// Opening Lull again (Spotlight, Finder, Raycast) always brings up the controls.
+    /// Opening Hertz again (Spotlight, Finder, Raycast) always brings up the controls.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         showControls()
         return false
@@ -166,9 +166,9 @@ enum StatusIcon {
     }
 }
 
-/// `Lull --snapshot <dir>`: render the panel (light + dark) to PNGs for review.
-/// `Lull --record <dir>`: play a short scripted session with real audio and save the panel at 30 fps.
-/// `Lull --icon <dir>`: render the app icon iconset.
+/// `Hertz --snapshot <dir>`: render the panel (light + dark) to PNGs for review.
+/// `Hertz --record <dir>`: play a short scripted session with real audio and save the panel at 30 fps.
+/// `Hertz --icon <dir>`: render the app icon iconset.
 @MainActor enum Render {
     static func snapshot(to dir: String) {
         let m = Model(preview: true)

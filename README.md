@@ -1,13 +1,15 @@
-# Lull
+# Hertz
 
-A focus, relax and sleep sound player for the macOS menu bar, drawn as a dot-matrix display.
+A Nothing OS-inspired focus, relax and sleep sound player for the macOS menu bar.
 
-<p align="center"><img src="docs/lull.gif" width="336" alt="Lull's panel playing Lofi, Rain and Sharp, with a live dot-matrix spectrum"></p>
+<p align="center"><img src="docs/hertz.gif" width="336" alt="Hertz's panel playing Lofi, Rain and Sharp, with a live dot-matrix spectrum"></p>
 
-Lull plays seamless loops from the menu bar. The panel shows what is playing in a 5×7 dot font,
-the sound's live spectrum as columns of dots, and the current round as a row of dots, with a single
-red dot marking the present moment. The visual design is inspired by Nothing's dot-matrix style.
-Lull is an independent project and is not affiliated with Nothing Technology Limited.
+Hertz plays seamless loops from the menu bar, and its panel follows the Nothing OS design language:
+a black ground, white dots on a dim dot grid, a 5×7 dot-matrix font, and a single red dot for "now".
+The panel shows what is playing in that dot font, the sound's live spectrum as columns of dots, and
+the current round as a row of dots, with the red dot marking the present moment.
+
+Hertz is an independent project. It is not affiliated with, or endorsed by, Nothing Technology Limited.
 
 ## Features
 
@@ -24,26 +26,29 @@ Lull is an independent project and is not affiliated with Nothing Technology Lim
 - **Gapless loops.** Every loop is cut and checked so that the point where it repeats cannot be heard.
 - **Timers.** Play until stopped, for 25, 45 or 90 minutes, or in Pomodoro rounds (25/5 or 50/10)
   with a chime at each change.
-- **Media keys.** The keyboard's play/pause key, AirPods and Control Center control Lull while it is the
+- **Media keys.** The keyboard's play/pause key, AirPods and Control Center control Hertz while it is the
   active player.
 - **Widget** for the desktop and Notification Center.
-- **URL scheme** for Shortcuts and Raycast: `lull://toggle`, `lull://play`, `lull://stop`,
-  `lull://mix/<id>` (ids: `sharp`, `brown`, `lofi`, `rain`, `pink`).
+- **URL scheme** for Shortcuts and Raycast: `hertz://toggle`, `hertz://play`, `hertz://stop`,
+  `hertz://mix/<id>` (ids: `sharp`, `brown`, `lofi`, `rain`, `pink`).
 - **Right-click** the menu bar icon to play or pause without opening the panel.
 
 ## Install
 
+Upgrading from Lull 1.0: quit Lull and delete `Lull.app`. Hertz keeps its settings.
+
+
 Requires macOS 14 (Sonoma) or later, on Apple silicon or Intel.
 
-1. Download `Lull.zip` from the [latest release](../../releases/latest) and unzip it.
-2. Move `Lull.app` to your Applications folder.
-3. Open it. Lull is not signed with an Apple Developer ID, so macOS blocks the first launch:
+1. Download `Hertz.zip` from the [latest release](../../releases/latest) and unzip it.
+2. Move `Hertz.app` to your Applications folder.
+3. Open it. Hertz is not signed with an Apple Developer ID, so macOS blocks the first launch:
    - **macOS 15 (Sequoia) and later:** open System Settings → Privacy & Security, scroll to the
-     message about Lull, and click **Open Anyway**.
-   - **macOS 14 (Sonoma):** right-click `Lull.app` in Finder and choose **Open**.
-   - **Or, in Terminal:** `xattr -dr com.apple.quarantine /Applications/Lull.app`
+     message about Hertz, and click **Open Anyway**.
+   - **macOS 14 (Sonoma):** right-click `Hertz.app` in Finder and choose **Open**.
+   - **Or, in Terminal:** `xattr -dr com.apple.quarantine /Applications/Hertz.app`
 
-Lull appears in the menu bar, not the Dock. To start it with your Mac, turn on *Open at login* in its panel.
+Hertz appears in the menu bar, not the Dock. To start it with your Mac, turn on *Open at login* in its panel.
 
 ## Build from source
 
@@ -55,7 +60,7 @@ python3 -m pip install numpy        # once
 python3 tools/make_loops.py         # build the loops into audio/loops/ (generated or from audio/src/)
 sh build.sh                         # build, install to ~/Applications and launch
 sh build.sh check                   # build, run the self-test and render panel snapshots into build/
-sh build.sh release                 # universal build zipped to build/Lull.zip
+sh build.sh release                 # universal build zipped to build/Hertz.zip
 ```
 
 ## Add your own mixes

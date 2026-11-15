@@ -33,7 +33,7 @@ func rgb(_ hex: UInt32) -> Color {
 }
 
 /// What the widget shows. The app writes it; the sandboxed widget reads it through a
-/// read-only file exception (see Widget/LullWidget.entitlements).
+/// read-only file exception (see Widget/HertzWidget.entitlements).
 struct SharedState: Codable {
     var mode: String
     var playing: Bool
@@ -42,7 +42,7 @@ struct SharedState: Codable {
     static var url: URL {
         // Real home, even inside the widget's sandbox container.
         let home = String(cString: getpwuid(getuid())!.pointee.pw_dir)
-        return URL(fileURLWithPath: home).appendingPathComponent("Library/Application Support/Lull/state.json")
+        return URL(fileURLWithPath: home).appendingPathComponent("Library/Application Support/Hertz/state.json")
     }
 
     static func load() -> SharedState? {

@@ -137,7 +137,7 @@ final class Model: ObservableObject {
         didSet {
             guard launchAtLogin != (SMAppService.mainApp.status == .enabled) else { return }
             do { launchAtLogin ? try SMAppService.mainApp.register() : try SMAppService.mainApp.unregister() }
-            catch { NSLog("Lull: login item: \(error)"); DispatchQueue.main.async { self.launchAtLogin = SMAppService.mainApp.status == .enabled } }
+            catch { NSLog("Hertz: login item: \(error)"); DispatchQueue.main.async { self.launchAtLogin = SMAppService.mainApp.status == .enabled } }
         }
     }
 
@@ -191,7 +191,7 @@ final class Model: ObservableObject {
     private func nowPlaying() {
         guard engine != nil else { return }
         let info = MPNowPlayingInfoCenter.default()
-        info.nowPlayingInfo = [MPMediaItemPropertyTitle: mix.name, MPMediaItemPropertyArtist: "Lull",
+        info.nowPlayingInfo = [MPMediaItemPropertyTitle: mix.name, MPMediaItemPropertyArtist: "Hertz",
                                MPNowPlayingInfoPropertyPlaybackRate: playing ? 1.0 : 0.0]
         info.playbackState = playing ? .playing : .paused
     }
@@ -310,7 +310,7 @@ final class Model: ObservableObject {
         publish()
     }
 
-    /// lull://toggle, lull://play, lull://stop, lull://mode/<name>
+    /// hertz://toggle, hertz://play, hertz://stop, hertz://mix/<id>, hertz://mode/<name> (lull:// still works)
     func handle(_ url: URL) {
         switch url.host {
         case "toggle": toggle()

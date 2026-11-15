@@ -103,7 +103,7 @@ struct ModeChip: View {
     let mode: Mode
     let selected: Bool
     var body: some View {
-        Link(destination: URL(string: "lull://mode/\(mode.rawValue)")!) {
+        Link(destination: URL(string: "hertz://mode/\(mode.rawValue)")!) {
             HStack(spacing: 7) {
                 Image(systemName: mode.symbol)
                     .font(.system(size: 11, weight: .semibold))
@@ -125,7 +125,7 @@ struct ModeChip: View {
     }
 }
 
-struct LullWidgetView: View {
+struct HertzWidgetView: View {
     let e: Entry
     @Environment(\.widgetFamily) var family
 
@@ -133,10 +133,10 @@ struct LullWidgetView: View {
         Group {
             if family == .systemSmall {
                 Hero(e: e, compact: true)
-                    .widgetURL(URL(string: "lull://toggle"))
+                    .widgetURL(URL(string: "hertz://toggle"))
             } else {
                 HStack(spacing: 14) {
-                    Link(destination: URL(string: "lull://toggle")!) { Hero(e: e, compact: false) }
+                    Link(destination: URL(string: "hertz://toggle")!) { Hero(e: e, compact: false) }
                     VStack(spacing: 4) {
                         ForEach(Mode.allCases) { ModeChip(mode: $0, selected: $0 == e.mode) }
                     }
@@ -155,16 +155,16 @@ struct LullWidgetView: View {
     }
 }
 
-struct LullWidget: Widget {
+struct HertzWidget: Widget {
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: "LullWidget", provider: Provider()) { LullWidgetView(e: $0) }
-            .configurationDisplayName("Lull")
+        StaticConfiguration(kind: "LullWidget"   /* kind kept: widgets already placed stay put */, provider: Provider()) { HertzWidgetView(e: $0) }
+            .configurationDisplayName("Hertz")
             .description("Play, pause and switch focus modes.")
             .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
 @main
-struct LullWidgets: WidgetBundle {
-    var body: some Widget { LullWidget() }
+struct HertzWidgets: WidgetBundle {
+    var body: some Widget { HertzWidget() }
 }

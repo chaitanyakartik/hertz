@@ -37,7 +37,7 @@ final class LoopPlayer {
     /// Make `id` the sounding loop: resume it if it is already current, else crossfade to it.
     /// Call with the engine running.
     func select(_ id: String) {
-        guard engine.isRunning else { NSLog("Lull: engine not running, loop \(id) not started"); return }   // play() would throw
+        guard engine.isRunning else { NSLog("Hertz: engine not running, loop \(id) not started"); return }   // play() would throw
         if ids[current] == id, let pos = stale { stale = nil; recover(position: pos); return }
         if ids[current] == id {
             if !players[current].isPlaying { players[current].play() }
@@ -96,10 +96,10 @@ final class LoopPlayer {
 
     private func schedule(_ i: Int, id: String, from offset: AVAudioFramePosition) -> Bool {
         guard let url = Self.url(id), let f = try? AVAudioFile(forReading: url) else {
-            NSLog("Lull: missing loop \(id)"); return false
+            NSLog("Hertz: missing loop \(id)"); return false
         }
         let len = f.length - 2 * Self.pad
-        guard len > 0 else { NSLog("Lull: loop \(id) too short"); return false }
+        guard len > 0 else { NSLog("Hertz: loop \(id) too short"); return false }
         lock.lock(); gens[i] &+= 1; let g = gens[i]; lock.unlock()
         ids[i] = id; loopLen[i] = len
         let off = max(0, offset) % len

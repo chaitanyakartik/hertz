@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Lull's seamless loop files.
+"""Build Hertz's seamless loop files.
 
     /usr/bin/python3 tools/make_loops.py            # build every loop into audio/loops/
     /usr/bin/python3 tools/make_loops.py lofi rain  # just these
